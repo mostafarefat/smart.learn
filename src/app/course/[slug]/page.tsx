@@ -28,8 +28,8 @@ const courses = [
   },
 ];
 
-// ✅ المهم: لازم تضيف دي عشان Next.js يبني صفحات الديناميكية
-export function generateStaticParams() {
+// ✅ لازم تكون async وترجع Promise
+export async function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));

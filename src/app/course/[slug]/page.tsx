@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+// بيانات الكورسات
 const courses = [
   {
     slug: "react",
@@ -28,20 +29,15 @@ const courses = [
   },
 ];
 
-// ✅ لازم تكون async وترجع Promise
+// ✅ توليد الـ params للديناميك روت
 export async function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));
 }
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default function CoursePage({ params }: PageProps) {
+// ✅ نحدد نوع البرامتر مباشرة بدون واجهة PageProps (عشان نتفادى الـ type conflict)
+export default function CoursePage({ params }: { params: { slug: string } }) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {

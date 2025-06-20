@@ -39,13 +39,12 @@ export function generateStaticParams() {
   }));
 }
 
-
 export default function CoursePage({ params }: Props) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {
     // استخدام دالة notFound لعرض صفحة 404
-    notFound()
+    notFound();
   }
 
   return (

@@ -30,19 +30,22 @@ const courses = [
   },
 ];
 
-export async function generateStaticParams() {
+// ✅ هذه هي الدالة المطلوبة لـ dynamic routes
+export function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));
 }
 
-interface PageProps {
+// ✅ خلي اسم الـ interface مش PageProps
+interface Props {
   params: {
     slug: string;
   };
 }
 
-export default function CoursePage({ params }: PageProps) {
+// ✅ ما تستخدمش async هنا
+export default function CoursePage({ params }: Props) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {

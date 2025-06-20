@@ -28,22 +28,23 @@ const courses = [
   },
 ];
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
+// ✅ المهم: لازم تضيف دي عشان Next.js يبني صفحات الديناميكية
 export function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));
 }
 
-export default function CoursePage({ params }: Props) {
+interface PageProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function CoursePage({ params }: PageProps) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {
-    // استخدام دالة notFound لعرض صفحة 404
     notFound();
   }
 

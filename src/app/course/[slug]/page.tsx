@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-// بيانات الكورسات
+// البيانات التجريبية للكورسات
 const courses = [
   {
     slug: "react",
@@ -29,15 +29,21 @@ const courses = [
   },
 ];
 
-// ✅ ضروري: عشان Next.js يبني الصفحات مسبقًا
+// ⛔️ احذف أي type اسمها PageProps – مش ضرورية هنا
+
+// ✅ ضروري: توليد static paths من slug
 export async function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));
 }
 
-// ✅ ضروري: ما تستخدمش PageProps - اكتب البرامتر يدوي
-export default function CoursePage({ params }: { params: { slug: string } }) {
+// ✅ الحل: تحديد نوع props يدويًا بدون PageProps
+export default function CoursePage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {

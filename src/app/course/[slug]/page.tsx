@@ -33,6 +33,12 @@ interface Props {
     slug: string;
   };
 }
+export function generateStaticParams() {
+  return courses.map((course) => ({
+    slug: course.slug,
+  }));
+}
+
 
 export default function CoursePage({ params }: Props) {
   const course = courses.find((c) => c.slug === params.slug);

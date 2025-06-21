@@ -18,6 +18,10 @@
     --foreground: #ededed;
   }
 }
+/* src/app/globals.css أو wherever it's located */
+.main-font {
+  font-family: sans-serif;
+}
 
 body {
   background: var(--background);

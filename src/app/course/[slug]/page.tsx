@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+// بيانات الكورسات
 const courses = [
   {
     slug: "react",
@@ -30,22 +31,22 @@ const courses = [
   },
 ];
 
-// ✅ هذه هي الدالة المطلوبة لـ dynamic routes
+// ✅ تعريف الدالة لتوليد المسارات الثابتة (مطلوبة مع dynamic routes)
 export function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));
 }
 
-// ✅ خلي اسم الـ interface مش PageProps
-interface Props {
+// ✅ تحديد نوع الباراميتر بشكل صحيح
+interface PageProps {
   params: {
-    slug: string;
+    slug: "";
   };
 }
 
-// ✅ ما تستخدمش async هنا
-export default function CoursePage({ params }: Props) {
+// ✅ كتابة دالة الصفحة بشكل سليم
+export default function CoursePage({ params }: PageProps) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {

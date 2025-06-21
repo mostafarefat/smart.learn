@@ -28,22 +28,15 @@ const courses = [
   },
 ];
 
-// ✅ ضروري تكون موجودة
+// ✅ لتوليد المسارات
 export function generateStaticParams() {
   return courses.map((course) => ({
     slug: course.slug,
   }));
 }
 
-// ✅ ضروري وجود interface
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
-// ✅ أهم سطر: لازم يكون فيه export default صحيح
-export default function CoursePage({ params }: PageProps) {
+// ✅ شيلنا الـ interface مؤقتًا لتبسيط المشكلة
+export default function CoursePage({ params }: { params: { slug: string } }) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {

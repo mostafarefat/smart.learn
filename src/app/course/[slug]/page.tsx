@@ -35,12 +35,18 @@ export function generateStaticParams() {
   }));
 }
 
-// ✅ شيلنا الـ interface مؤقتًا لتبسيط المشكلة
-export default function CoursePage({ params }: { params: { slug: string } }) {
+// ✅ تعديل نوع البراميتر props ليتوافق مع Next.js 15
+type CoursePageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default function CoursePage({ params }: CoursePageProps) {
   const course = courses.find((c) => c.slug === params.slug);
 
   if (!course) {
-   return notFound();
+    return notFound();
   }
 
   return (
@@ -61,4 +67,4 @@ export default function CoursePage({ params }: { params: { slug: string } }) {
       </button>
     </div>
   );
-}   
+}
